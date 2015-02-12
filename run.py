@@ -17,25 +17,53 @@ def make_lowercase(words):
     return lowercase_words
 
 def make_chain(words): 
-    chain = chain_maker()  
+    chain = chain_maker()
+    word_length = len(words)
+    counter = word_length  
     for word in words:
+        counter += 1
         #if word is in chain
         if word in chain: 
+            print "TEST"
+            print words
+            #print words[counter + 1]
             print "already exists"
             chain[word]['frequency'] += 1
             #if the next word has already followed that word increase that words probability
-            # next_word = word + 1
-            # print next_word
+            #next_word = words[counter]
+            print 'word: ' + word
+            # print 'next word: ' + next_word
 
-            #if chain[word]
-            #else add that word as a word that follows that word
+            # if next_word in chain[word]:
+            #     print 'next word already appears in word chain'
+            #     chain[word][next_word] += 1
+
+            # else:
+            #     print 'next word is not already in word chain'
+            #     chain[word][next_word] = 1
 
         else:
             print "else:"
             #append an object version of word to chain and give value of 1
             print word
             chain[word] = {'frequency':1}
+
+            # next_word = words[counter]
+            print 'word: ' + word
+            # print 'next word: ' + next_word
+
+            # if next_word in chain[word]:
+            #     print 'next word already appears in word chain'
+            #     chain[word][next_word] += 1
+
+            # else:
+            #     print 'next word is not already in word chain'
+            #     chain[word][next_word] = 1
+
             print chain
+
+
+
     return chain
 
 words = text_to_array()
