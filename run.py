@@ -12,9 +12,6 @@ def text_to_array():
     # print len(words)
     return words
 
-class chain_maker(dict):
-    pass
-
 def make_lowercase(words):
     lowercase_words = [word.lower() for word in words]
     return lowercase_words
@@ -22,56 +19,26 @@ def make_lowercase(words):
 def make_chain(words): 
 
     #Makes the chain as a dictionary
-    chain = chain_maker()
+    chain = {}
 
-    counter = 1
     #print "counter: " + str(counter)
     #runs through words
-    phrase = []
-    for word in words:
+    phrase = (words[0], words[1])
 
-        if counter == len(words):
-            print "complete"
+    for word in words[2:]:
 
-        elif counter == 1:
-            phrase.append(word)
-            #print "first run"
-            counter += 1
+        if phrase in chain:
+            chain[phrase].append(word)
 
         else:
-            #add new word to phrase
-            phrase.append(word)
-            
-            #print 'phrase: ' + str(phrase)
-            #print 'counter: ' + str(counter)
+            #print str(phrase) + " doesn't exist in chain"
+            chain[phrase] = [word]
+            #print chain
 
-            phrase = tuple(phrase)
+        #remove old word from phrase
+        # phrase = phrase[1:]
 
-            #next_word = "blarg"
-            next_word = words[counter]
-
-
-            if phrase in chain:
-                #print str(phrase) + " already exists"
-                for x in chain:
-                    #print phrase
-                    #print chain[x] #gives you value not key?
-                    if chain[phrase] == chain[x]:
-                        #print "test"
-                        temp = chain[phrase]
-                        temp.append(next_word)
-
-            else:
-                #print str(phrase) + " doesn't exist in chain"
-                chain[phrase] = [next_word]
-                #print chain
-
-            #remove old word from phrase
-            phrase = phrase[1:]
-
-            phrase = list(phrase)
-
-            counter += 1
+        phrase = (phrase[1], word)
 
     return chain
 
@@ -82,11 +49,10 @@ lowercase_words = make_lowercase(words)
 
 chain = make_chain(lowercase_words)
 #print "Here is your chain:"
-#print chain
+# print chain
 
 def generate(chain):
     seed = random.choice(chain.keys())
-    #seed = ('be', 'four')
     final_words = []
 
     for new_words in range(200):
@@ -100,11 +66,6 @@ def generate(chain):
 
     final = " ".join(final_words)
     print final
-    # if tuple(seed) in chain:
-    #     print chain[seed]
-
-    # else:
-    #     print "error, you need a dif seed phrase"
 
 
 generate(chain)
