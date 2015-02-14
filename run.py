@@ -1,78 +1,107 @@
-class chain_maker(dict):
-    pass
-
 def text_to_array():
     with open ("test_text.txt", "r") as myfile:
         data=myfile.read().replace('\n', ' ')
         #print data
 
         words = data.split()
+        #print type(words)
 
-    print words
-    print len(words)
+    # print words
+    # print len(words)
     return words
+
+class chain_maker(dict):
+    pass
 
 def make_lowercase(words):
     lowercase_words = [word.lower() for word in words]
     return lowercase_words
 
 def make_chain(words): 
+
+    #Makes the chain as a dictionary
     chain = chain_maker()
-    word_length = len(words)
-    counter = word_length  
+
+    counter = 1
+    print "counter: " + str(counter)
+    #runs through words
+    phrase = []
     for word in words:
-        counter += 1
-        #if word is in chain
-        if word in chain: 
-            print "TEST"
-            print words
-            #print words[counter + 1]
-            print "already exists"
-            chain[word]['frequency'] += 1
-            #if the next word has already followed that word increase that words probability
-            #next_word = words[counter]
-            print 'word: ' + word
-            # print 'next word: ' + next_word
 
-            # if next_word in chain[word]:
-            #     print 'next word already appears in word chain'
-            #     chain[word][next_word] += 1
+        if counter == len(words):
+            print "complete"
 
-            # else:
-            #     print 'next word is not already in word chain'
-            #     chain[word][next_word] = 1
+        elif counter == 1:
+            phrase.append(word)
+            print "first run"
+            counter += 1
 
         else:
-            print "else:"
-            #append an object version of word to chain and give value of 1
-            print word
-            chain[word] = {'frequency':1}
+            #add new word to phrase
+            phrase.append(word)
+            
+            print 'phrase: ' + str(phrase)
+            print 'counter: ' + str(counter)
 
-            # next_word = words[counter]
-            print 'word: ' + word
-            # print 'next word: ' + next_word
+            phrase = tuple(phrase)
 
-            # if next_word in chain[word]:
-            #     print 'next word already appears in word chain'
-            #     chain[word][next_word] += 1
-
-            # else:
-            #     print 'next word is not already in word chain'
-            #     chain[word][next_word] = 1
-
-            print chain
+            #next_word = "blarg"
+            next_word = words[counter]
 
 
+            if phrase in chain:
+                print str(phrase) + " already exists"
+                for x in chain:
+                    print phrase
+                    print chain[x] #gives you value not key?
+                    if chain[phrase] == chain[x]:
+                        print "test"
+                        temp = chain[phrase]
+                        temp.append(next_word)
+
+            else:
+                print str(phrase) + " doesn't exist in chain"
+                chain[phrase] = [next_word]
+                #print chain
+
+            #remove old word from phrase
+            phrase = phrase[1:]
+
+            phrase = list(phrase)
+
+            counter += 1
 
     return chain
 
 words = text_to_array()
-print words
+#print words
 lowercase_words = make_lowercase(words)
 # print lowercase_words
 
 chain = make_chain(lowercase_words)
+#print "Here is your chain:"
 print chain
+
+def generate(chain):
+    seed = ('be', 'four')
+    final = []
+
+    for x in chain:
+        print x
+        if x == seed:
+            print "found it!"
+            
+        else:
+            pass
+
+    # if tuple(seed) in chain:
+    #     print chain[seed]
+
+    # else:
+    #     print "error, you need a dif seed phrase"
+
+
+generate(chain)
 
 
 
