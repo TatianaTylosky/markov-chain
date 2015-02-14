@@ -1,3 +1,5 @@
+import random
+
 def text_to_array():
     with open ("test_text.txt", "r") as myfile:
         data=myfile.read().replace('\n', ' ')
@@ -84,16 +86,19 @@ print chain
 
 def generate(chain):
     seed = ('be', 'four')
-    final = []
+    final_words = []
 
-    for x in chain:
-        print x
-        if x == seed:
-            print "found it!"
-            
-        else:
-            pass
+    for new_words in range(200):
 
+        if seed not in chain:
+            break
+
+        picked = random.choice(chain[seed])
+        final_words.append(picked)
+        seed = (seed[1], picked)
+
+    final = " ".join(final_words)
+    print final
     # if tuple(seed) in chain:
     #     print chain[seed]
 
