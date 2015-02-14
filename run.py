@@ -25,7 +25,7 @@ def make_chain(words):
     chain = chain_maker()
 
     counter = 1
-    print "counter: " + str(counter)
+    #print "counter: " + str(counter)
     #runs through words
     phrase = []
     for word in words:
@@ -35,15 +35,15 @@ def make_chain(words):
 
         elif counter == 1:
             phrase.append(word)
-            print "first run"
+            #print "first run"
             counter += 1
 
         else:
             #add new word to phrase
             phrase.append(word)
             
-            print 'phrase: ' + str(phrase)
-            print 'counter: ' + str(counter)
+            #print 'phrase: ' + str(phrase)
+            #print 'counter: ' + str(counter)
 
             phrase = tuple(phrase)
 
@@ -52,17 +52,17 @@ def make_chain(words):
 
 
             if phrase in chain:
-                print str(phrase) + " already exists"
+                #print str(phrase) + " already exists"
                 for x in chain:
-                    print phrase
-                    print chain[x] #gives you value not key?
+                    #print phrase
+                    #print chain[x] #gives you value not key?
                     if chain[phrase] == chain[x]:
-                        print "test"
+                        #print "test"
                         temp = chain[phrase]
                         temp.append(next_word)
 
             else:
-                print str(phrase) + " doesn't exist in chain"
+                #print str(phrase) + " doesn't exist in chain"
                 chain[phrase] = [next_word]
                 #print chain
 
@@ -82,10 +82,11 @@ lowercase_words = make_lowercase(words)
 
 chain = make_chain(lowercase_words)
 #print "Here is your chain:"
-print chain
+#print chain
 
 def generate(chain):
-    seed = ('be', 'four')
+    seed = random.choice(chain.keys())
+    #seed = ('be', 'four')
     final_words = []
 
     for new_words in range(200):
