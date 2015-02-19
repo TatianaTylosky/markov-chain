@@ -2,19 +2,11 @@ import random
 
 def text_to_array():
     with open ("test_text.txt", "r") as myfile:
-        data=myfile.read().replace('\n', ' ')
-        #print data
-
-        words = data.split()
-        #print type(words)
+        words=myfile.read().lower.split()
 
     # print words
     # print len(words)
     return words
-
-def make_lowercase(words):
-    lowercase_words = [word.lower() for word in words]
-    return lowercase_words
 
 def make_chain(words): 
 
@@ -44,10 +36,8 @@ def make_chain(words):
 
 words = text_to_array()
 #print words
-lowercase_words = make_lowercase(words)
-# print lowercase_words
 
-chain = make_chain(lowercase_words)
+chain = make_chain(words)
 #print "Here is your chain:"
 # print chain
 
