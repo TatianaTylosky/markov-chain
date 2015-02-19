@@ -2,7 +2,7 @@ import random
 
 def text_to_array():
     with open ("test_text.txt", "r") as myfile:
-        words=myfile.read().lower.split()
+        words=myfile.read().lower().split()
 
     # print words
     # print len(words)
