@@ -34,13 +34,6 @@ def make_chain(words):
 
     return chain
 
-words = text_to_array()
-#print words
-
-chain = make_chain(words)
-#print "Here is your chain:"
-# print chain
-
 def generate(chain):
     seed = random.choice(chain.keys())
     final_words = []
@@ -58,7 +51,19 @@ def generate(chain):
     print final
 
 
-generate(chain)
+
+
+if _name_ == "__main__":
+    
+    
+    words = text_to_array()
+    #print words
+
+    chain = make_chain(words)
+    #print "Here is your chain:"
+    # print chain
+    
+    generate(chain)
 
 
 
