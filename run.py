@@ -54,8 +54,6 @@ def generate(chain):
 
 
 if _name_ == "__main__":
-    
-    
     words = text_to_array()
     #print words
 
